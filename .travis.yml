@@ -13,3 +13,10 @@ after_success:
   - docker build -t crossorigin88/multi-nginx ./nginx
   - docker build -t crossorigin88/multi-server ./server
   - docker build -t crossorigin88/multi-worker ./worker
+  #Login to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  #Take those images and push them to docker hub
+  - docker push crossorigin88/multi-client
+  - docker push crossorigin88/multi-nginx
+  - docker push crossorigin88/multi-server
+  - docker push crossorigin88/multi-worker
